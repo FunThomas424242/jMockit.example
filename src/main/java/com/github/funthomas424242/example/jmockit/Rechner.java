@@ -2,7 +2,7 @@ package com.github.funthomas424242.example.jmockit;
 
 /*-
  * #%L
- * Testbeispiele mit jMockit)
+ * Testbeispiele mit jmockit)
  * %%
  * Copyright (C) 2019 PIUG
  * %%
