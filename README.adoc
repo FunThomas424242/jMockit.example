@@ -62,6 +62,19 @@ new Expectations() {
 };
 ----
 
+* Zusammenarbeit mit JaCoCo
+.pom.xml
+[source, xml]
+----
+<configuration>
+    <argLine>
+  (1)      ${argLine}	-javaagent:${settings.localRepository}/org/jmockit/jmockit/${jmockit.version}/jmockit-${jmockit.version}.jar=coverage
+    </argLine>
+</configuration>
+
+(1) ${argLine} war die Lösung: https://stackoverflow.com/questions/18107375/getting-skipping-jacoco-execution-due-to-missing-execution-data-file-upon-exec
+----
+
 
 === Quellen
 
