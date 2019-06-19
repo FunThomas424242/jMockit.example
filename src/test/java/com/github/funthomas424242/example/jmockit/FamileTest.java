@@ -86,10 +86,8 @@ class FamileTest {
         };
 
         final Familie familie = new Familie("Graf von Blasius");
-
         // Wurde beim new über das MockUp gesetzt
         assertEquals(56, familie.id);
-
         // Es können nur nicht finale Felder gesetzt werden
         assertNull(familie.sippenBezeichnung);
     }
