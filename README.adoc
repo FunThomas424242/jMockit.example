@@ -16,19 +16,51 @@ jMockit arbeitet mit Instrumentierung des ByteCodes.
 === Erkenntnisse
 
 * @Tested Objekte sind zunächst mal keine Mocks und ergo kann auch kein Mock Verhalten definiert werden.
-   Evtl. lässt sich das lösen über
+   Das lässt sich aber mit folgender Konstruktion bedingt ändern:
 
 .Constructor.java
 [source, java]
 ----
-new MockUp<Familie>() {
-       @Mock
-       public void $init(Invocation invocation, String string) {
-           ((Familie)invocation.getInvokedInstance()).sippenBezeichnung = string;
-       }
-   };
+new Expectations() {
+    {
+        new MockUp<Familie>() {
+            @Mock
+            public void $init(Invocation invocation, String bezeichnung) {   (1)
+                ((Familie) invocation.getInvokedInstance()).id = 56;
+            }
+        };
+    }
+};
+
+(1) Die Parameter können leider nicht für den Konstruktor benutzt werden, da nur noch der Standardkonstruktor unterstützt wird (Deencapsulation wird nicht mehr unterstützt).
 ----
-*
+
+Hierbei wird das Objekt über einen Standardkonstruktor erzeugt und dann einzelne Felder im Innern mit Werten gesetzt. Das klappt aber nur wenn die zu setzenden Felder nicht final sind.
+Im Beispiel führt das dazu, dass durch die einfache Erzeugung einer Familieninstanz auch eine id innitialisiert wird.
+.ConstructorTest.java
+[source, java]
+----
+final Familie familie = new Familie("Graf von Blasius");
+// Wurde beim new über das MockUp gesetzt
+assertEquals(56, familie.id);
+// Es können nur nicht finale Felder gesetzt werden
+assertNull(familie.sippenBezeichnung);
+----
+* In den Expectations können Annahmen definiert werden, die beschreiben bei welchem Aufruf das Mock welchen Wert liefert.
+
+.CallTest.java
+[source, java]
+----
+new Expectations() {
+    {
+        person.getAlter();
+        result = 1;
+        result = 2;
+        result = 3;
+        times = 3;
+    }
+};
+----
 
 
 === Quellen
