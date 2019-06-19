@@ -1,4 +1,4 @@
-package jmockit.example;
+package com.github.funthomas424242.example.jmockit;
 
 /*-
  * #%L

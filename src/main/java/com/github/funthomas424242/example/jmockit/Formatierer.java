@@ -1,4 +1,4 @@
-package jmockit.example;
+package com.github.funthomas424242.example.jmockit;
 
 /*-
  * #%L
@@ -22,17 +22,19 @@ package jmockit.example;
  * #L%
  */
 
-public class Rechner {
+import java.text.DecimalFormat;
+ 
+public class Formatierer {
+	
+	final private String pattern;
+	
+	public Formatierer(final String pattern){
+		this.pattern=pattern;
+	}
 
-	final Formatierer formatierer;
-	
-	public Rechner(final String format){
-		this.formatierer=new Formatierer(format);
+	public String formatiere(int intValue) {
+		final DecimalFormat format=new DecimalFormat(pattern);
+		return format.format(intValue);
 	}
-	
-	public String addiere(final int a, final int b){
-		
-		return formatierer.formatiere(a+b);
-	}
-	
+
 }
