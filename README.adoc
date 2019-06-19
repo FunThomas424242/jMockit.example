@@ -21,3 +21,11 @@ Workaround: Einbindungung eines nicht signierten JUnit jars in eclipse.
 === Best Praxis
 1. Funktioniert gut im Maven Build
 2. Funktioniert gut mit TestNG
+
+
+=== Quellen
+
+* http://jmockit.github.io/tutorial/Introduction.html#isolation
+* http://jmockit.github.io/tutorial/Mocking.html
+* https://www.baeldung.com/jmockit-101
+* https://www.baeldung.com/jmockit-expectations
