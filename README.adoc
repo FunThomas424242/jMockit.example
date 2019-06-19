@@ -8,6 +8,8 @@ image:https://badge.waffle.io/FunThomas424242/jmockit.example.svg?columns=all["W
 
 
 == jMockit.example
+
+image:https://api.codacy.com/project/badge/Grade/9d68d28fb95b4db8807834f8e90075a7[link="https://app.codacy.com/app/FunThomas424242/jMockit.example?utm_source=github.com&utm_medium=referral&utm_content=FunThomas424242/jMockit.example&utm_campaign=Badge_Grade_Dashboard"]
 Testbeispiele mit jMockit
 
 === Hinweise
