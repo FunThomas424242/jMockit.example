@@ -24,7 +24,10 @@ package com.github.funthomas424242.example.jmockit;
 
 
 import mockit.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.Locale;
 
 public class RechnerTest {
 
@@ -36,6 +39,12 @@ public class RechnerTest {
 
     @Tested
     Rechner rechner;
+
+    @BeforeAll
+    static void initialisiereTestsuit(){
+        // Notwendig für Ausführung in Cloud z.B. Travis-CI
+        Locale.setDefault(new Locale("de", "DE"));
+    }
 
 // Nicht notwendig, da jMockit die @Tested Instanz über den Standardkonstruktor erzeugt
 //    @BeforeEach
