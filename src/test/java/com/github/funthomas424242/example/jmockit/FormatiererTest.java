@@ -22,41 +22,31 @@ package com.github.funthomas424242.example.jmockit;
  * #L%
  */
 
-
-import mockit.*;
+import mockit.Tested;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class RechnerTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-    @Mocked
-    Formatierer formatierer;
-
-    @Injectable
-    private String format = "#,###.##";
+class FormatiererTest {
 
     @Tested
-    Rechner rechner;
+    Formatierer formatierer;
 
-// Nicht notwendig, da jMockit die @Tested Instanz über den Standardkonstruktor erzeugt
-//    @BeforeEach
-//    void initialisiereTestfall() {
-//        rechner = new Rechner(format);
-//    }
+    @BeforeEach
+    void initialisiereTestfall() {
+        formatierer = new Formatierer("#.###.##");
+    }
 
     @Test
-    public void addiereZulaessig() {
-
-        new Expectations() {{
-            formatierer.formatiere(7.0);
-            times = 1;
-        }};
-
-        rechner.addiere(3, 4);
-
-        new Verifications() {{
-            formatierer.formatiere(7.0);
-            times = 1;
-        }};
+    void erzeugeValidInstanz() {
+        final Formatierer formatierer = new Formatierer("#,###.##");
+        assertNotNull(formatierer);
+        final String siebenFormatiert = formatierer.formatiere(7.34);
+        assertEquals("7,34", siebenFormatiert);
+        final String achtMillionenFormatiert = formatierer.formatiere(8000000.56);
+        assertEquals("8.000.000,56", achtMillionenFormatiert);
 
     }
 

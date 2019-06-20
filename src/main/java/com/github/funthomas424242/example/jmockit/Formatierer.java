@@ -32,9 +32,9 @@ public class Formatierer {
 		this.pattern=pattern;
 	}
 
-	public String formatiere(int intValue) {
+	public String formatiere(double value) {
 		final DecimalFormat format=new DecimalFormat(pattern);
-		return format.format(intValue);
+		return format.format(value);
 	}
 
 }
